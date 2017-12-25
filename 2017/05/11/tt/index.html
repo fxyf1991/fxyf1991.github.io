@@ -90,16 +90,16 @@
 
 
 
-<meta name="description" content="Hello World尝试使用markdown个人博客地址![](http://uploads/avatar.jpeg)  锄禾日当午汗滴禾下土  &amp;lt;div&amp;gt;hello world&amp;lt;/div&amp;gt;">
+<meta name="description" content="问题如下123456789window.jQuery = ???window.$ = jQueryvar $div = $(&amp;apos;div&amp;apos;)$div.addClass(&amp;apos;red&amp;apos;) // 可将所有 div 的 class 添加一个 red$div.setText(&amp;apos;hi&amp;apos;) // 可将所有 div 的 textContent 变为 hi  整">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tt">
+<meta property="og:title" content="实现一个简单的 jQuery 的 API">
 <meta property="og:url" content="http://yoursite.com/2017/05/11/tt/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Hello World尝试使用markdown个人博客地址![](http://uploads/avatar.jpeg)  锄禾日当午汗滴禾下土  &amp;lt;div&amp;gt;hello world&amp;lt;/div&amp;gt;">
-<meta property="og:updated_time" content="2017-12-23T13:11:18.561Z">
+<meta property="og:description" content="问题如下123456789window.jQuery = ???window.$ = jQueryvar $div = $(&amp;apos;div&amp;apos;)$div.addClass(&amp;apos;red&amp;apos;) // 可将所有 div 的 class 添加一个 red$div.setText(&amp;apos;hi&amp;apos;) // 可将所有 div 的 textContent 变为 hi  整">
+<meta property="og:updated_time" content="2017-12-25T13:02:13.026Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tt">
-<meta name="twitter:description" content="Hello World尝试使用markdown个人博客地址![](http://uploads/avatar.jpeg)  锄禾日当午汗滴禾下土  &amp;lt;div&amp;gt;hello world&amp;lt;/div&amp;gt;">
+<meta name="twitter:title" content="实现一个简单的 jQuery 的 API">
+<meta name="twitter:description" content="问题如下123456789window.jQuery = ???window.$ = jQueryvar $div = $(&amp;apos;div&amp;apos;)$div.addClass(&amp;apos;red&amp;apos;) // 可将所有 div 的 class 添加一个 red$div.setText(&amp;apos;hi&amp;apos;) // 可将所有 div 的 textContent 变为 hi  整">
 
 
 
@@ -133,7 +133,7 @@
 
 
 
-  <title>tt | Hexo</title>
+  <title>实现一个简单的 jQuery 的 API | Hexo</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">tt</h1>
+          <h1 class="post-title" itemprop="name headline">实现一个简单的 jQuery 的 API</h1>
         
 
         <div class="post-meta">
@@ -326,12 +326,20 @@
       
 
       
-        <h3 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h3><p>尝试使用markdown<br><a href="http://ttcs.cf" target="_blank" rel="external">个人博客地址</a><br>![]<br>(<a href="http://uploads/avatar.jpeg" target="_blank" rel="external">http://uploads/avatar.jpeg</a>)</p>
-<blockquote>
-<p>锄禾日当午<br>汗滴禾下土</p>
-</blockquote>
-<p><code>&lt;div&gt;hello world&lt;/div&gt;</code></p>
-
+        <h4 id="问题如下"><a href="#问题如下" class="headerlink" title="问题如下"></a>问题如下</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">window.jQuery = ???</div><div class="line"></div><div class="line">window.$ = jQuery</div><div class="line"></div><div class="line">var $div = $(&apos;div&apos;)</div><div class="line"></div><div class="line">$div.addClass(&apos;red&apos;) // 可将所有 div 的 class 添加一个 red</div><div class="line"></div><div class="line">$div.setText(&apos;hi&apos;) // 可将所有 div 的 textContent 变为 hi</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="整体思路如下"><a href="#整体思路如下" class="headerlink" title="整体思路如下"></a>整体思路如下</h4><p>我们考虑构造出一个新的函数，返回一个新的对象，该对象包含addClass和setText两个属性，之后便可以使用jQuery构造一个新的node（即$div）。在此之上，便可以使用$div调用addClass和setText两个属性。</p>
+<hr>
+<h5 id="addClass-实现思路"><a href="#addClass-实现思路" class="headerlink" title="addClass() 实现思路"></a>addClass() 实现思路</h5><ul>
+<li>使用document.querySelectorAll这个API获取当前所有div标签，返回一个nodeList</li>
+<li>遍历nodeList中的所有div，给每个div加上相应的class</li>
+</ul>
+<hr>
+<h5 id="setText-实现思路"><a href="#setText-实现思路" class="headerlink" title="setText() 实现思路"></a>setText() 实现思路</h5><ul>
+<li>使用document.querySelectorAll这个API获取当前所有div标签，返回一个nodeList</li>
+<li>遍历nodeList中的所有div，将每个div的内容通过textContent方法设置为hi</li>
+</ul>
+<h4 id="其中，？？？部分具体实现如下"><a href="#其中，？？？部分具体实现如下" class="headerlink" title="其中，？？？部分具体实现如下"></a>其中，？？？部分具体实现如下</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function(node) &#123;</div><div class="line">    return &#123;</div><div class="line"></div><div class="line">        addClass: function (ccc) &#123;</div><div class="line">            var x = document.querySelectorAll(node)</div><div class="line">            for (let i = 0; i &lt; x.length; i++) &#123;</div><div class="line">                x[i].classList.add(ccc)</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line">        setText: function (text) &#123;</div><div class="line">            var x = document.querySelectorAll(node)</div><div class="line">            for (let i = 0; i &lt; x.length; i++) &#123;</div><div class="line">                x[i].textContent = text</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -490,7 +498,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hello-World"><span class="nav-number">1.</span> <span class="nav-text">Hello World</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题如下"><span class="nav-number">1.</span> <span class="nav-text">问题如下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整体思路如下"><span class="nav-number">2.</span> <span class="nav-text">整体思路如下</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#addClass-实现思路"><span class="nav-number">2.1.</span> <span class="nav-text">addClass() 实现思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#setText-实现思路"><span class="nav-number">2.2.</span> <span class="nav-text">setText() 实现思路</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其中，？？？部分具体实现如下"><span class="nav-number">3.</span> <span class="nav-text">其中，？？？部分具体实现如下</span></a></li></ol></div>
             
 
           </div>

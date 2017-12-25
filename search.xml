@@ -11,9 +11,9 @@
     <content type="text"><![CDATA[yeah]]></content>
   </entry>
   <entry>
-    <title><![CDATA[tt]]></title>
+    <title><![CDATA[实现一个简单的 jQuery 的 API]]></title>
     <url>%2F2017%2F05%2F11%2Ftt%2F</url>
-    <content type="text"><![CDATA[Hello World尝试使用markdown个人博客地址![](http://uploads/avatar.jpeg) 锄禾日当午汗滴禾下土 &lt;div&gt;hello world&lt;/div&gt;]]></content>
+    <content type="text"><![CDATA[问题如下123456789window.jQuery = ???window.$ = jQueryvar $div = $(&apos;div&apos;)$div.addClass(&apos;red&apos;) // 可将所有 div 的 class 添加一个 red$div.setText(&apos;hi&apos;) // 可将所有 div 的 textContent 变为 hi 整体思路如下我们考虑构造出一个新的函数，返回一个新的对象，该对象包含addClass和setText两个属性，之后便可以使用jQuery构造一个新的node（即$div）。在此之上，便可以使用$div调用addClass和setText两个属性。 addClass() 实现思路 使用document.querySelectorAll这个API获取当前所有div标签，返回一个nodeList 遍历nodeList中的所有div，给每个div加上相应的class setText() 实现思路 使用document.querySelectorAll这个API获取当前所有div标签，返回一个nodeList 遍历nodeList中的所有div，将每个div的内容通过textContent方法设置为hi 其中，？？？部分具体实现如下1234567891011121314151617function(node) &#123; return &#123; addClass: function (ccc) &#123; var x = document.querySelectorAll(node) for (let i = 0; i &lt; x.length; i++) &#123; x[i].classList.add(ccc) &#125; &#125;, setText: function (text) &#123; var x = document.querySelectorAll(node) for (let i = 0; i &lt; x.length; i++) &#123; x[i].textContent = text &#125; &#125; &#125;&#125;]]></content>
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
