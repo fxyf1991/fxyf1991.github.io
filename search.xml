@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[����js��ð��--���ֲȿӰ���]]></title>
+    <title><![CDATA[关于js的冒泡--新手踩坑案例]]></title>
     <url>%2F2018%2F01%2F05%2Fbubble%2F</url>
-    <content type="text"><![CDATA[��ͨ��һ��html�����˽�����div�Ĵ�����ϵ123456&lt;div id='wrapper' class="wrapper"&gt; &lt;button id="clickMe"&gt;����&lt;/button&gt; &lt;div id='popover' class="popover"&gt; ���� &lt;/div&gt;&lt;/div&gt; Ҫʵ�ֵĹ����� ͨ��button��ť�������򿪸��� ���ö�button���Ӽ����¼���Ĭ�����ظ��㣬���û�������չʾ���㡣 ����ҳ���հ������رո���ʵ�ֹ���������ʾ 1. ����body���ȿ��Ƕ�body�������Ӽ���������Ϊ���������ظ��㡣������Ч��ͨ����body���ӱ߿򿴵�body�߶��Ǹ��������ݱ仯�ģ�����ֻռ��Ļ�Ϸ���Сһ���֡� 2. ����document ͬ����Ч������������ð�ݽ׶��ȴ�����ť�¼�������ͬʱ���ڶ�document�ļ����������Ŵ���document������������Ȼ�޷���ʾͼ�㡣 ��һ��˼���󣬶�wrapper����e.stopPropagation����ֹͣ�������ɴ˿�����ð�ݣ�����ʵ���������ܡ� 123456789clickMe.addEventListener('click', function(e)&#123; popover.style.display = 'block'&#125;)wrapper.addEventListener('click', function(e)&#123; e.stopPropagation()&#125;)document.addEventListener('click', function()&#123; popover.style.display = 'none'&#125;) 3. ������Ȼ��ʵ�����󣬵����ӵļ��������࣬���Ǽ����ڴ���ʹ�ã��ɽ����Ż�������document�ļ���ȫ�����ӵ�click�¼����ڲ�����ʹ��one����ֻ����һ�ε����¼���123456789$(clickMe).on('click', function() &#123; $(popover).show() $(document).one('click', function() &#123; $(popover).hide() &#125;)&#125;)$(wrapper).on('click', function(e)&#123; e.stopPropagation()&#125;) ��ע�⣬��3����ɾ�����ϣ��Ի�����bug����ִ��ɾ�����������Ĵ������£�12345678$(clickMe).on('click', function() &#123; $(popover).show() setTimeout(function() &#123; $(document).one('click', function() &#123; $(popover).hide() &#125;) &#125;, 0)&#125;) ���������У���document��������setTimeout�����У�������setTimeout�������������е����ݾ���ִ�ж���������ִ�У�������������button������֮������������show�ͼ�������ʱ��������popover����hide����ð�ݽ׶α�������ִ��show��hide������bug��]]></content>
+    <content type="text"><![CDATA[先通过一段html代码了解各个div的从属关系123456&lt;div id='wrapper' class="wrapper"&gt; &lt;button id="clickMe"&gt;点我&lt;/button&gt; &lt;div id='popover' class="popover"&gt; 浮层 &lt;/div&gt;&lt;/div&gt; 要实现的功能是 通过button按钮点击后打开浮层 采用对button添加监听事件，默认隐藏浮层，在用户点击后展示浮层。 点击页面空白区域关闭浮层实现过程如下所示 1. 监听body首先考虑对body对象添加监听，内容为点击后隐藏浮层。发现无效后通过对body添加边框看到body高度是根据其内容变化的，所以只占屏幕上方很小一部分。 2. 监听document 同样无效。经分析，在冒泡阶段先触发按钮事件，但因同时存在对document的监听，紧接着触发document监听，所以仍然无法显示图层。 进一步思考后，对wrapper添加e.stopPropagation，即停止传播，由此可阻断冒泡，即可实现上述功能。 123456789clickMe.addEventListener('click', function(e)&#123; popover.style.display = 'block'&#125;)wrapper.addEventListener('click', function(e)&#123; e.stopPropagation()&#125;)document.addEventListener('click', function()&#123; popover.style.display = 'none'&#125;) 3. 以上虽然可实现需求，但添加的监听器过多，考虑减少内存的使用，可进行优化：将对document的监听全部添加到click事件的内部，并使用one方法只监听一次点击事件。123456789$(clickMe).on('click', function() &#123; $(popover).show() $(document).one('click', function() &#123; $(popover).hide() &#125;)&#125;)$(wrapper).on('click', function(e)&#123; e.stopPropagation()&#125;) 需注意，在3中若删除阻断，仍会出现bug，若执意删除，则需更改代码如下：12345678$(clickMe).on('click', function() &#123; $(popover).show() setTimeout(function() &#123; $(document).one('click', function() &#123; $(popover).hide() &#125;) &#125;, 0)&#125;) 上述代码中，将document监听放在setTimeout函数中，这里的setTimeout作用在于让其中的内容尽快执行而不是立即执行，若不添加则在button被点击之后会立即调用show和监听，此时会立即对popover绑定hide，在冒泡阶段便会依序执行show和hide，造成bug。]]></content>
       <tags>
-        <tag>ð��</tag>
+        <tag>冒泡</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[关于]]></title>
-    <url>%2F2017%2F12%2F14%2F%E5%85%B3%E4%BA%8E%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[yeah]]></title>
-    <url>%2F2017%2F05%2F11%2Fyeah%2F</url>
-    <content type="text"><![CDATA[yeah]]></content>
   </entry>
   <entry>
     <title><![CDATA[实现一个简单的 jQuery 的 API]]></title>
